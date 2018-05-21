@@ -1,22 +1,27 @@
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, Float
+from sqlalchemy.ext.declarative import declarative_base
 
-class Recipe(db.Model):
+Base = declarative_base()
+
+
+class Recipe(Base):
     __tablename__ = 'recipes'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    type = db.Column(db.String(25))
-    prep_time_minutes = db.Column(db.Integer)
-    cook_time_minutes = db.Column(db.Integer)
-    recipe_source = db.Column(db.String())
-    vegetable_required = db.Column(db.Boolean)
-    starch_required = db.Column(db.Boolean)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100))
+    type = Column(String(25))
+    prep_time_minutes = Column(Integer)
+    cook_time_minutes = Column(Integer)
+    recipe_source = Column(String())
+    vegetable_required = Column(Boolean)
+    starch_required = Column(Boolean)
 
-class Ingredient(db.Model):
-    __tablename__: 'ingredients'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250))
-    quantity = db.Column(db.Float)
-    size = db.Column(db.Float)
-    unit = db.Column(db.String(25))
-    style = db.Column(db.String(25))
+
+class Ingredient(Base):
+    __tablename = 'ingredients'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250))
+    quantity = Column(Float)
+    size = Column(Float)
+    unit = Column(String(25))
+    style = Column(String(25))
